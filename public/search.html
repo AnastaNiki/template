@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="styles.css" >
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>React App</title>
+  </head>
+
+  <body>
+    <div class="app">
+    <div id="root"></div>
+
+    <header class="header">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+      <div class="progress_bar"></div>
+      <img src="img/player_default_album.png" height="60" width="60" alt="album"/>
+      <a href="/" class="header__logo"><img src="img/logo.png" height="34" width="105" alt="Last.fm"></a>
+      <div class="header__nav">
+        <div class="wrapper">
+          <div><button type="submit" class="header__buttonSearchToggler"></button></div>
+          <div class=" header__inputBlock">
+            <input type="search" class="header__input"  placeholder="Search for music..."/>
+            <a href="/"><button type="submit" class="header__buttonCloseSearch" ></button></a>
+            <a href="/search.html"><button type="submit" class="header__buttonSearch" ></button></a>
+          </div> 
+        </div>
+
+        <a href="/" class="header__navLink link">Live</a>
+        <a href="/" class="header__navLink link">Music</a>
+        <a href="/" class="header__navLink link">Charts</a>
+        <a href="/" class="header__navLink link">Event</a>
+        <a href="/" class="header__navLink link">Features</a>
+
+      </div>
+    </header>
+
+    <main class="search">
+        <div class = "search__top">
+            <h1 class="search__header">Search results for “never gonna give you up”</h1>
+            <div class="search__nav">
+                <ul class="search__navItems">
+                    <li class="search__navItem"><a href="/search.html" class="search__mainNavLink">Top Results</a></li>
+                    <li class="search__navItem"><a href="/search.html" class="search__navLink">Artists</a></li>
+                    <li class="search__navItem"><a href="/search.html" class="search__navLink">Albums</a></li>
+                    <li class="search__navItem"><a href="/search.html" class="search__navLink">Tracks</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="search_content">
+            <div class="search__inputBlock">
+                <input type="search" class="search__input"  placeholder="Search for music..."/>
+                <a href="/search.html"><button type="submit" class="search__buttonSearch" ></button></a>
+              </div> 
+            
+            <section>
+                <h2 class="search__titel">Artists</h2>
+                <ol class="search__gridItems">
+                    <li class="search__gridItem">
+                        <div  class="search__covers">
+                            <div class="search__coverItem">
+                                <div class="search__coverItemImg">
+                                    <img src="img/coverArtist_default.png" alt="Never Gonna Give You Up">
+                                </div>
+                                <div class="search__coverItemText">
+                                    <p class="search__coverItemTextMain"><a href="/search.html" class="search__linkText">Never Gonna Give You Up</a></p>
+                                    <span class="search__statName">1,785 listeners</span>
+                                </div>
+                                <a gref="/search.html" class="search__linkBlock"></a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="search__gridItem">
+                        <div  class="search__covers">
+                            <div class="search__coverItem">
+                                <div class="search__coverItemImg">
+                                    <img src="img/coverArtist_default.png" alt="Never Gonna Give You Up">
+                                </div>
+                                <div class="search__coverItemText">
+                                    <p class="search__coverItemTextMain"><a href="/search.html" class="search__linkText">Never Gonna Give You Up</a></p>
+                                    <span class="search__statName">1,785 listeners</span>
+                                </div>
+                                <a gref="/search.html" class="search__linkBlock"></a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="search__gridItem">
+                        <div  class="search__covers">
+                            <div class="search__coverItem">
+                                <div class="search__coverItemImg">
+                                    <img src="img/coverArtist_default.png" alt="Never Gonna Give You Up">
+                                </div>
+                                <div class="search__coverItemText">
+                                    <p class="search__coverItemTextMain"><a href="/search.html" class="search__linkText">Never Gonna Give You Up</a></p>
+                                    <span class="search__statName">1,785 listeners</span>
+                                </div>
+                                <a gref="/search.html" class="search__linkBlock"></a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="search__gridItem">
+                        <div  class="search__covers">
+                            <div class="search__coverItem">
+                                <div class="search__coverItemImg">
+                                    <img src="img/coverArtist_default.png" alt="Never Gonna Give You Up">
+                                </div>
+                                <div class="search__coverItemText">
+                                    <p class="search__coverItemTextMain"><a href="/search.html" class="search__linkText">Never Gonna Give You Up</a></p>
+                                    <span class="search__statName">1,785 listeners</span>
+                                </div>
+                                <a gref="/search.html" class="search__linkBlock"></a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="search__gridItem">
+                        <div  class="search__covers">
+                            <div class="search__coverItem">
+                                <div class="search__coverItemImg">
+                                    <img src="img/coverArtist_default.png" alt="Never Gonna Give You Up">
+                                </div>
+                                <div class="search__coverItemText">
+                                    <p class="search__coverItemTextMain"><a href="/search.html" class="search__linkText">Never Gonna Give You Up</a></p>
+                                    <span class="search__statName">1,785 listeners</span>
+                                </div>
+                                <a gref="/search.html" class="search__linkBlock"></a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="search__gridItem">
+                        <div  class="search__covers">
+                            <div class="search__coverItem">
+                                <div class="search__coverItemImg">
+                                    <img src="img/coverArtist_default.png" alt="Never Gonna Give You Up">
+                                </div>
+                                <div class="search__coverItemText">
+                                    <p class="search__coverItemTextMain"><a href="/search.html" class="search__linkText">Never Gonna Give You Up</a></p>
+                                    <span class="search__statName">1,785 listeners</span>
+                                </div>
+                                <a gref="/search.html" class="search__linkBlock"></a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="search__gridItem">
+                        <div  class="search__covers">
+                            <div class="search__coverItem">
+                                <div class="search__coverItemImg">
+                                    <img src="img/coverArtist_default.png" alt="Never Gonna Give You Up">
+                                </div>
+                                <div class="search__coverItemText">
+                                    <p class="search__coverItemTextMain"><a href="/search.html" class="search__linkText">Never Gonna Give You Up</a></p>
+                                    <span class="search__statName">1,785 listeners</span>
+                                </div>
+                                <a gref="/search.html" class="search__linkBlock"></a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="search__gridItem">
+                        <div  class="search__covers">
+                            <div class="search__coverItem">
+                                <div class="search__coverItemImg">
+                                    <img src="img/coverArtist_default.png" alt="Never Gonna Give You Up">
+                                </div>
+                                <div class="search__coverItemText">
+                                    <p class="search__coverItemTextMain"><a href="/search.html" class="search__linkText">Never Gonna Give You Up</a></p>
+                                    <span class="search__statName">1,785 listeners</span>
+                                </div>
+                                <a gref="/search.html" class="search__linkBlock"></a>
+                            </div>
+                        </div>
+                    </li>
+                </ol>
+                <p  class="search__more"><a href="https://www.last.fm/search/artists?q=" class="search__moreLink">More artists</a></p>
+            </section>
+
+            <section>
+                <h2 class="search__titel">Albums</h2>
+                <ol class="search__gridItems">
+                    <li class="search__gridItem">
+                        <div  class="search__covers">
+                            <div class="search__coverItem">
+                                <div class="search__coverItemImg">
+                                    <img src="img/cover_never.png" alt="Never Gonna Give You Up">
+                                </div>
+                                <div class="search__coverItemText">
+                                    <p class="search__coverItemTextMain"><a href="/search.html" class="search__linkText">Never Gonna Give You Up</a></p>
+                                    <a href="/search.html" class="search__singerLink">Mac Beez</a>
+                                </div>
+                                <a gref="/search.html" class="search__linkBlock"></a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="search__gridItem">
+                        <div  class="search__covers">
+                            <div class="search__coverItem">
+                                <div class="search__coverItemImg">
+                                    <img src="img/cover_never.png" alt="Never Gonna Give You Up">
+                                </div>
+                                <div class="search__coverItemText">
+                                    <p class="search__coverItemTextMain"><a href="/search.html" class="search__linkText">Never Gonna Give You Up</a></p>
+                                    <a href="/search.html" class="search__singerLink">Mac Beez</a>
+                                </div>
+                                <a gref="/search.html" class="search__linkBlock"></a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="search__gridItem">
+                        <div  class="search__covers">
+                            <div class="search__coverItem">
+                                <div class="search__coverItemImg">
+                                    <img src="img/cover_never.png" alt="Never Gonna Give You Up">
+                                </div>
+                                <div class="search__coverItemText">
+                                    <p class="search__coverItemTextMain"><a href="/search.html" class="search__linkText">Never Gonna Give You Up</a></p>
+                                    <a href="/search.html" class="search__singerLink">Mac Beez</a>
+                                </div>
+                                <a gref="/search.html" class="search__linkBlock"></a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="search__gridItem">
+                        <div  class="search__covers">
+                            <div class="search__coverItem">
+                                <div class="search__coverItemImg">
+                                    <img src="img/cover_never.png" alt="Never Gonna Give You Up">
+                                </div>
+                                <div class="search__coverItemText">
+                                    <p class="search__coverItemTextMain"><a href="/search.html" class="search__linkText">Never Gonna Give You Up</a></p>
+                                    <a href="/search.html" class="search__singerLink">Mac Beez</a>
+                                </div>
+                                <a gref="/search.html" class="search__linkBlock"></a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="search__gridItem">
+                        <div  class="search__covers">
+                            <div class="search__coverItem">
+                                <div class="search__coverItemImg">
+                                    <img src="img/coverAlbum_default.png" alt="Album">
+                                </div>
+                                <div class="search__coverItemText">
+                                    <p class="search__coverItemTextMain"><a href="/search.html" class="search__linkText">Never Gonna Give You Up</a></p>
+                                    <a href="/search.html" class="search__singerLink">Singer</a>
+                                </div>
+                                <a gref="/search.html" class="search__linkBlock"></a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="search__gridItem">
+                        <div  class="search__covers">
+                            <div class="search__coverItem">
+                                <div class="search__coverItemImg">
+                                    <img src="img/coverAlbum_default.png" alt="Album">
+                                </div>
+                                <div class="search__coverItemText">
+                                    <p class="search__coverItemTextMain"><a href="/search.html" class="search__linkText">Never Gonna Give You Up</a></p>
+                                    <a href="/search.html" class="search__singerLink">Singer</a>
+                                </div>
+                                <a gref="/search.html" class="search__linkBlock"></a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="search__gridItem">
+                        <div  class="search__covers">
+                            <div class="search__coverItem">
+                                <div class="search__coverItemImg">
+                                    <img src="img/coverAlbum_default.png" alt="Album">
+                                </div>
+                                <div class="search__coverItemText">
+                                    <p class="search__coverItemTextMain"><a href="/search.html" class="search__linkText">Never Gonna Give You Up</a></p>
+                                    <a href="/search.html" class="search__singerLink">Singer</a>
+                                </div>
+                                <a gref="/search.html" class="search__linkBlock"></a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="search__gridItem">
+                        <div  class="search__covers">
+                            <div class="search__coverItem">
+                                <div class="search__coverItemImg">
+                                    <img src="img/coverAlbum_default.png" alt="Album">
+                                </div>
+                                <div class="search__coverItemText">
+                                    <p class="search__coverItemTextMain"><a href="/search.html" class="search__linkText">Never Gonna Give You Up</a></p>
+                                    <a href="/search.html" class="search__singerLink">Singer</a>
+                                </div>
+                                <a gref="/search.html" class="search__linkBlock"></a>
+                            </div>
+                        </div>
+                    </li>
+                </ol>
+                <p  class="search__more"><a href="https://www.last.fm/search/albums?q=" class="search__moreLink">More albums</a></p>
+            </section>
+
+            <section>
+                <h2 class="search__titel">Tracs</h2>
+                <table class="search__tracksTable">
+                    <th></th>
+                    <tr>
+                        <td><button type="submit" class="search__play-button"></button></td>
+                        <td><a><img class="search__tracksImg" src="img/search_track_img.png" alt="img"></a></td>
+                        <td><a href="" class="search__trackLinkSong">Never Gonna Give You Up</a></td>
+                        <td><a href="" class="search__traacLinkSinger">Rick Astley</a></td>
+                    </tr>
+                    <tr>
+                        <td><button type="submit" class="search__play-button"></button></td>
+                        <td><a><img class="search__tracksImg" src="img/search_track_img.png" alt="img"></a></td>
+                        <td><a href="" class="search__trackLinkSong">Never Gonna Give You Up</a></td>
+                        <td><a href="" class="search__traacLinkSinger">Rick Astley</a></td>
+                    </tr>
+                    <tr>
+                        <td><button type="submit" class="search__play-button"></button></td>
+                        <td><a><img class="search__tracksImg" src="img/search_track_img.png" alt="img"></a></td>
+                        <td><a href="" class="search__trackLinkSong">Never Gonna Give You Up</a></td>
+                        <td><a href="" class="search__traacLinkSinger">Rick Astley</a></td>
+                    </tr>
+                    <tr>
+                        <td><button type="submit" class="search__play-button"></button></td>
+                        <td><a><img class="search__tracksImg" src="img/search_track_img.png" alt="img"></a></td>
+                        <td><a href="" class="search__trackLinkSong">Never Gonna Give You Up</a></td>
+                        <td><a href="" class="search__traacLinkSinger">Rick Astley</a></td>
+                    </tr>
+                </table>
+                <p  class="search__more"><a href="https://www.last.fm/search/tracks?q=" class="search__moreLink">More tracks</a></p>
+            </section>
+            
+            
+        </div>
+
+    </main>
+
+
+    <footer class="footer"> 
+      <div class="footer__top">
+        <ul calss="footer__topNav"  aria-label="Company">
+          <h2 class="footer__navHead">Company</h2>
+          <li class="footer__li"><a href="/" class="footer__topNavLink">About Last.fm</a></li>
+          <li class="footer__li"><a href="/" class="footer__topNavLink">Contact Us</a></li>
+          <li class="footer__li"><a href="/" class="footer__topNavLink">Jobs</a></li>
+        </ul>
+        <ul calss="footer__topNav"  aria-label="Help">
+          <h2 class="footer__navHead">Help</h2>
+          <li class="footer__li"><a href="/" class="footer__topNavLink">Track My Music</a></li>
+          <li class="footer__li"><a href="/" class="footer__topNavLink">Community Support</a></li>
+          <li class="footer__li"><a href="/" class="footer__topNavLink">Community Guidelines</a></li>
+          <li class="footer__li"><a href="/" class="footer__topNavLink">Help</a></li>
+        </ul>
+        <ul calss="footer__topNav"  aria-label="Goodies">
+          <h2 class="footer__navHead">Goodies</h2>
+          <li class="footer__li"><a href="/" class="footer__topNavLink">Download Scrobbler</a></li>
+          <li class="footer__li"><a href="/" class="footer__topNavLink">Developer API</a></li>
+          <li class="footer__li"><a href="/" class="footer__topNavLink">Free Music Downloads</a></li>
+          <li class="footer__li"><a href="/" class="footer__topNavLink">Merchandise</a></li>
+        </ul>
+        <ul calss="footer__topNav"  aria-label="Account">
+          <h2 class="footer__navHead">Account</h2>
+          <li class="footer__li"><a href="/" class="footer__topNavLink">Sign Up</a></li>
+          <li class="footer__li"><a href="/" class="footer__topNavLink">Log In</a></li>
+          <li class="footer__li"><a href="/" class="footer__topNavLink">Subscribe</a></li>
+        </ul>
+        <ul calss="footer__topNav"  aria-label="Follow us">
+          <h2 class="footer__navHead">Follow us</h2>
+          <li class="footer__li"><a href="/" class="footer__topNavLink">Facebook</a></li>
+          <li class="footer__li"><a href="/" class="footer__topNavLink">Twitter</a></li>
+          <li class="footer__li"><a href="/" class="footer__topNavLink">Instagram</a></li>
+          <li class="footer__li"><a href="/" class="footer__topNavLink">YouTube</a></li>
+        </ul>
+      </div>
+      <div class="footer__bottom">
+        <div class="footer__info">
+          <ul class="footer__navlang">
+            <li ><a href="/" class="footer__langLinkCurrent">English</a></li>
+            <li><a href="/" class="footer__langLink">Deutsch</a></li>
+            <li><a href="/" class="footer__langLink">Español</a></li>
+            <li><a href="/" class="footer__langLink">Français</a></li>
+            <li><a href="/" class="footer__langLink">Italiano</a></li>
+            <li><a href="/" class="footer__langLink">日本語</a></li>
+            <li><a href="/" class="footer__langLink">Polski</a></li>
+            <li><a href="/" class="footer__langLink">Português</a></li>
+            <li><a href="/" class="footer__langLink">Русский</a></li>
+            <li><a href="/" class="footer__langLink">Svenska</a></li>
+            <li><a href="/" class="footer__langLink">Türkçe</a></li>
+            <li><a href="/" class="footer__langLink">简体中文</a></li>
+          </ul>
+          <div class="footer__timeZone">
+            Time zone: Europe/Moscow
+          </div>
+          <div class="footer__doc">CBS Interactive © 2022 Last.fm Ltd. All rights reserved · Terms of Use · Privacy ·
+          Policy · Legal · Policies · Cookies · Policy · Cookie · Information · Jobs at ViacomCBS · Last.fm Music
+          </div>
+        </div>
+        
+          <div class="footer__logo">
+            Audioscrobbler
+            <img  src="img/footer_logo.png" alt="logo" class="footer__logoImg"/>
+          </div>
+      </div>
+    </footer>
+    
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+    </div>
+  </body>
+</html>
