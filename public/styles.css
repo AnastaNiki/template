@@ -91,10 +91,6 @@ header {
     border: black;
 }
 
-.content {
-    overflow: auto;
-}
-
 .header__input {
     height: 60px;
     width: 100%;
@@ -109,7 +105,6 @@ header {
 
 /* убрать стандартную кнопку закрыть в поле поиска, разные браузеры*/
 .header__input::-ms-clear {display: none; width : 0; height: 0; }
-.header__input::-ms-clear {  display: none; width : 0; height: 0; }
 .header__input::-ms-reveal {  display: none; width : 0; height: 0; }
 .header__input::-webkit-search-decoration{ display: none; }
 .header__input::-webkit-search-cancel-button{ display: none; }
@@ -259,6 +254,7 @@ header {
     margin: 0 auto;
     color: #222;
     font-family: BarlowBold;
+    overflow: auto;
  }
 
  .content__header {
@@ -370,7 +366,7 @@ header {
     margin-top: 24px;
 }
 
-.music__album {
+.music__artist {
     font-family: Barlow;
     font-size: 14px;
 }
@@ -488,17 +484,17 @@ header {
 .search_content {
     margin-left: 38px;
     padding: 24px 20px;
-    width: 620px;
+    width: 700px;
 }
 
 .search__inputBlock {
     display: flex;
-    width: 620px;
+    width: 700px;
     height: 40px;
 }
 
 .search__input {
-    width: 580px;
+    width: 655px;
     border-width: 2px;
     border-style: solid;
     outline: none;
@@ -534,16 +530,21 @@ header {
     margin-left: 0;
     margin-right: 0;
     padding-left: 0px;
-    width: 620px;
+    width: 700px;
     font-size: 0;
+}
+
+.seacrh__message {
+    font-family: Barlow,"Open Sans",Lucida Grande,Helvetica Neue,Helvetica,Arial,Sans-serif;
+    font-size: 14px;
 }
 
 .search__gridItem {
     display: inline-block;
     list-style: none;
-    height: 155px;
+    height: 174px;
     padding-top: 0;
-    width: 155px;
+    width: 174px;
     position: relative;
     vertical-align: top;
 }
@@ -560,10 +561,9 @@ header {
 }
 
 .search__coverItemTextMain {
-    margin:0px;
+    margin: 0px;
     font-family: BarlowBold,"Open Sans",Lucida Grande,Helvetica Neue,Helvetica,Arial,Sans-serif;
     font-size: 14px;
-    margin: 0;
     color: #fff;
     position: relative;
     z-index: 1;
@@ -580,6 +580,7 @@ header {
 .search__coverItemImg {
     width: 100%;
 }
+
 .search__coverItemImg:after {
     background-image: linear-gradient(180deg,transparent 0,rgba(0,0,0,.35) 70%,rgba(0,0,0,.7));
     content: "";
@@ -703,9 +704,6 @@ header {
 
   .search__tracksTable tbody td {
     padding: 0px 9px;
-  }
-
-  .search__tracksTable tbody td {
     text-align: left;
   }
 
