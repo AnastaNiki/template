@@ -20,7 +20,7 @@ const trackHotNow = document.querySelector('.music__tracks');
  * 
  * @returns {Array<Object(12), Array<Array<Object>>} 
  */
-async function getMusicCharts() {
+export async function getMusicCharts() {
     try {
         const response = await fetch(`http://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&api_key=${APIkey}&format=json&limit=12&page=1`);
         let data = await response.json()
@@ -30,7 +30,7 @@ async function getMusicCharts() {
             let topTagsUrls = [];
             for (const element of musicCharts) {
                 topTagsUrls.push(`http://ws.audioscrobbler.com/2.0/?method=artist.gettoptags
-                &artist=${encodeURIComponent(element.name)}&api_key=${APIkey}&format=json`);
+&artist=${encodeURIComponent(element.name)}&api_key=${APIkey}&format=json`);
             }
 
             musicCharts.tags = await Promise.all(topTagsUrls.map(url => fetch(url))).then(

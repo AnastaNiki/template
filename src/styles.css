@@ -1,12 +1,12 @@
 @font-face {
 	font-family: 'Barlow'; 
     src: local('Barlow'),
-	    url(/fonts/Barlow-Regular.ttf); 
+	    url(./fonts/Barlow-Regular.ttf); 
 }
 @font-face {
 	font-family: 'BarlowBold'; 
     src: local('BarlowBold'),
-	    url(/fonts/Barlow-Bold.ttf); 
+	    url(./fonts/Barlow-Bold.ttf); 
 }
 
 html,
@@ -79,7 +79,8 @@ header {
 }
 
 .header__buttonSearchToggler {
-    background-image: url("../img/search.png");
+    /* background-image: url("img/search.png"); */
+    background-image: url("components/Header/header-img/search.png");
     background-repeat: no-repeat;
     background-position: center;
     position: relative;
@@ -133,7 +134,8 @@ header {
 } 
 
 .header__buttonSearch {
-    background-image: url("../img/search2.png");
+    /* background-image: url("img/search2.png"); */
+    background-image: url("components/Header/header-img/search2.png");
     background-repeat: no-repeat;
     background-position: center;
     background-color: #b81e1e;
@@ -145,7 +147,8 @@ header {
 }
 
 .header__buttonCloseSearch {
-    background-image: url("../img/close.png");
+    /* background-image: url("img/close.png"); */
+    background-image: url("components/Header/header-img/close.png");
     background-repeat: no-repeat;
     background-position: center;
     background-color: black;
@@ -266,7 +269,7 @@ header {
  }
 
  /* .music {
-   display: flexbox; \
+   display: flexbox; 
  } */
 
  .music__titel {
@@ -290,12 +293,13 @@ header {
 }
 
  .music__hotNow {
-    display: inline-flex;
-    margin-top: 24px;
+    display: flex;
+    /* margin-top: 24px; */
     list-style-type: none;
     padding: 0;
     margin-left: auto;
     margin-right: auto;
+    justify-content: space-evenly;
  }
 
  .music__imgHot {
@@ -504,7 +508,7 @@ header {
 }
 
 .search__buttonSearch {
-    background-image: url("../img/search_w.png");
+    background-image: url("./components/Search/search-img/search_w.png");
     background-repeat: no-repeat;
     background-position: center;
     position: relative;
@@ -631,7 +635,7 @@ header {
 }
 
 .search__moreLink:before {
-    background-image: url(img/morelink_before.png);
+    background-image: url(./components/Search/search-img/morelink_before.png);
     background-position: 0 0;
     background-repeat: no-repeat;
     content: "";
@@ -653,7 +657,7 @@ header {
 
 .search__play-button:before {
     background-color: rgba(255, 255, 255, 0.85);
-    background-image: url(img/play.png);
+    background-image: url(./components/Search/search-img/play.png);
     background-position: 8px 8px;
     background-repeat: no-repeat;
     border-radius: 100%;
