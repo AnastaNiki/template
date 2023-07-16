@@ -3,7 +3,6 @@
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <link rel="stylesheet" href="styles.css" >
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
@@ -20,140 +19,13 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
-    <script src="scripts/mainScript.js" async></script>
+
   </head>
 
   <body>
-    <div class="app">
+
     <div id="root"></div>
-
-    <header class="header">
-      <img src="img/player_default_album.png" height="60" width="60" alt="album"/>
-      <a href="/" class="header__logo"><img src="img/logo.png" height="34" width="105" alt="Last.fm"></a>
-      <div class="header__nav">
-        <div class="wrapper">
-          <div><button type="submit" class="header__buttonSearchToggler"></button></div>
-          <form id="header__inputForm">
-            <div class=" header__inputBlock">
-                <input type="search" class="header__input"  placeholder="Search for music..."/>
-              <a href="/"><button type="submit" class="header__buttonCloseSearch" ></button></a>
-              <a><button type="submit" class="header__buttonSearch" ></button></a>
-            </div>     
-          </form>
-        </div>
-    
-
-        <a href="/" class="header__navLink">Live</a>
-        <a href="/" class="header__navLink">Music</a>
-        <a href="/" class="header__navLink">Charts</a>
-        <a href="/" class="header__navLink">Event</a>
-        <a href="/" class="header__navLink">Features</a>
-
-      </div>
-    </header>
-
-    <main class="content">
-        <h1 class="content__header">Music</h1>
-        <div class="music">
-          <h2 class="music__titel">Hot right now</h2>
-          
-            <ol class="music__hotNow">
-
-            </ol>
-          
-          <div>
-            <ol class="music__hotNow">
-
-            </ol>
-          </div>
-          <h2 class="music__titel">Popular tracks</h2>
-          
-          <ol class="music__tracks">
-
-          </ol>
-          
-        </div>
-    </main>
-
-    <footer class="footer"> 
-      <div class="footer__top">
-        <ul calss="footer__topNav"  aria-label="Company">
-          <h2 class="footer__navHead">Company</h2>
-          <li class="footer__li"><a href="https://www.last.fm/about" class="link">About Last.fm</a></li>
-          <li class="footer__li"><a href="https://www.last.fm/about/contact" class="link">Contact Us</a></li>
-          <li class="footer__li"><a href="https://www.last.fm/about/jobs" class="link">Jobs</a></li>
-        </ul>
-        <ul calss="footer__topNav"  aria-label="Help">
-          <h2 class="footer__navHead">Help</h2>
-          <li class="footer__li"><a href="https://www.last.fm/about/trackmymusic" class="link">Track My Music</a></li>
-          <li class="footer__li"><a href="https://support.last.fm/" class="link">Community Support</a></li>
-          <li class="footer__li"><a href="https://www.last.fm/help/guidelines" class="link">Community Guidelines</a></li>
-          <li class="footer__li"><a href="https://www.last.fm/help/faq" class="link">Help</a></li>
-        </ul>
-        <ul calss="footer__topNav"  aria-label="Goodies">
-          <h2 class="footer__navHead">Goodies</h2>
-          <li class="footer__li"><a href="https://www.last.fm/about/trackmymusic" class="link">Download Scrobbler</a></li>
-          <li class="footer__li"><a href="https://www.last.fm/api" class="link">Developer API</a></li>
-          <li class="footer__li"><a href="https://www.last.fm/music/+free-music-downloads" class="link">Free Music Downloads</a></li>
-          <li class="footer__li"><a href="https://store.last.fm/" class="link">Merchandise</a></li>
-        </ul>
-        <ul calss="footer__topNav"  aria-label="Account">
-          <h2 class="footer__navHead">Account</h2>
-          <li class="footer__li"><a href="https://www.last.fm/join" class="link">Sign Up</a></li>
-          <li class="footer__li"><a href="https://www.last.fm/login" class="link">Log In</a></li>
-          <li class="footer__li"><a href="https://www.last.fm/pro" class="link">Subscribe</a></li>
-        </ul>
-        <ul calss="footer__topNav"  aria-label="Follow us">
-          <h2 class="footer__navHead">Follow us</h2>
-          <li class="footer__li"><a href="https://www.facebook.com/lastfm" class="link">Facebook</a></li>
-          <li class="footer__li"><a href="https://twitter.com/lastfm" class="link">Twitter</a></li>
-          <li class="footer__li"><a href="https://www.instagram.com/last_fm" class="link">Instagram</a></li>
-          <li class="footer__li"><a href="https://www.youtube.com/user/lastfm" class="link">YouTube</a></li>
-        </ul>
-      </div>
-      <div class="footer__bottom">
-        <div class="footer__info">
-          <ul class="footer__navlang">
-            <li class="footer__li"><a href="" class="footer__langLinkCurrent">English</a></li>
-            <li class="footer__li"><a href="" class="link">Deutsch</a></li>
-            <li class="footer__li"><a href="" class="link">Español</a></li>
-            <li class="footer__li"><a href="" class="link">Français</a></li>
-            <li class="footer__li"><a href="" class="link">Italiano</a></li>
-            <li class="footer__li"><a href="" class="link">日本語</a></li>
-            <li class="footer__li"><a href="" class="link">Polski</a></li>
-            <li class="footer__li"><a href="" class="link">Português</a></li>
-            <li class="footer__li"><a href="" class="link">Русский</a></li>
-            <li class="footer__li"><a href="" class="link">Svenska</a></li>
-            <li class="footer__li"><a href="" class="link">Türkçe</a></li>
-            <li class="footer__li"><a href="" class="link">简体中文</a></li>
-          </ul>
-          <div class="footer__timeZone">
-            Time zone: Europe/Moscow
-          </div>
-          <div class="footer__doc">CBS Interactive © 2022 Last.fm Ltd. All rights reserved · Terms of Use · Privacy ·
-          Policy · Legal · Policies · Cookies · Policy · Cookie · Information · Jobs at ViacomCBS · Last.fm Music
-          </div>
-        </div>
-        
-          <div class="footer__logo">
-            Audioscrobbler
-            <img  src="img/footer_logo.png" alt="logo" class="footer__logoImg"/>
-          </div>
-      </div>
-    </footer>
-    
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-    </div>
   </body>
 </html>
