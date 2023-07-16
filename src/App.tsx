@@ -8,16 +8,14 @@ import { Routes, Route } from "react-router-dom";
 function App() {
   return (
     <div className="app">
-    <div id="root"></div>
 
-    <Header />
-    <Routes>
-			<Route path="/" element={<Main />} />
-			<Route path={"search/"} element={<Search />} />
-	  </Routes>
-    <Footer />
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+      <Header />
+      <Routes>
+			  <Route path="/" element={<Main />} />
+			  <Route path={"search"} element={<Search />} />
+	    </Routes>
+      <Footer />
+
     </div>
   );
 }

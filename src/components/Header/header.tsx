@@ -1,46 +1,55 @@
-import { useSearchParams, createSearchParams, useNavigate} from 'react-router-dom';
+import { useSearchParams, createSearchParams} from 'react-router-dom';
 
 import logo from './header-img/logo.png'
 import albumLogo from "./header-img/player_default_album.png"
 
-function SearchForm() {
-    const navigate = useNavigate();
+const dataNavLinks = ['Live','Music','Charts','Event','Features']
 
-    const pathname = 'search';
-    const [searchParams, setSearchParams] = useSearchParams({q:''});
+function ItemNavLink(props: {name:string}) {
+  return  <a href="/" className="header__navLink">{props.name}</a>
+}
 
-    const handleChange = (event: { target: { value: any; }; }) => {
-        setSearchParams({q:event.target.value});
-      };
+function NavLinks(props:{navLinks:Array<string>}){
+  return (
+    <>
+      {props.navLinks.map((name:string) =>  <ItemNavLink name={name} key={name}/>)}
+    </>
+  );
+}
 
+function HeaderSearchForm() {
+  const pathname = 'search';
+  const [searchParams, setSearchParams] = useSearchParams({q:''});
 
-    const handleSubmit = (event: { preventDefault: () => void; }) => {
+  const onChange = (e: React.FormEvent<HTMLInputElement>): void => {
+    setSearchParams({q: e.currentTarget.value});
+  };
 
-        const path = {
-            pathname,
-            search: createSearchParams(searchParams).toString()
-          };
-    
-        event.preventDefault();
-        navigate(path);
-        window.location.reload();
-    };
+  const handleSubmit = (event: { preventDefault: () => void; }) => {
 
-    const handleClick = function (event: { preventDefault: () => void; }) {
-      const path = {
-        pathname,
+    const path = {
+      pathname,
         search: createSearchParams(searchParams).toString()
       };
-
+  
       event.preventDefault();
-      navigate(path);
-      window.location.reload();
+      window.location.href = path.pathname + "?" + path.search;
+  };
+
+  function handleClick(event: { preventDefault: () => void; }) {
+    const path = {
+      pathname,
+      search: createSearchParams(searchParams).toString()
     };
+
+    event.preventDefault();
+    window.location.href = path.pathname + "?" + path.search;
+}
   
     return (
       <form id="header__inputForm" onSubmit={handleSubmit}>
         <div className=" header__inputBlock">
-            <input type="search" className="header__input" onChange={handleChange} placeholder="Search for music..."/>
+            <input type="search" className="header__input" onChange={onChange} placeholder="Search for music..."/>
           <a href="/"><button type="submit" className="header__buttonCloseSearch"></button></a>
           <a><button type="submit" className="header__buttonSearch" onClick={handleClick}></button></a>
         </div>     
@@ -56,15 +65,11 @@ export const Header = () => {
         <div className="header__nav">
           <div className="wrapper">
             <div><button type="submit" className="header__buttonSearchToggler"></button></div>
-            <SearchForm />
+            <HeaderSearchForm />
           </div>
       
-          <a href="/" className="header__navLink">Live</a>
-          <a href="/" className="header__navLink">Music</a>
-          <a href="/" className="header__navLink">Charts</a>
-          <a href="/" className="header__navLink">Event</a>
-          <a href="/" className="header__navLink">Features</a>
-    
+          <NavLinks navLinks={dataNavLinks}/>
+  
         </div>
       </header>
     );

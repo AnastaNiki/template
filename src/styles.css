@@ -19,9 +19,6 @@ body
 
 .app {
     display: grid;
-    /* grid-template-rows: 62px 1fr 403px; */
-    grid-template-rows: 60px 1fr;
-    /* height: 100vh; */
 }
 
 .header,
@@ -265,7 +262,7 @@ header {
     font-weight: 700;
     text-align: center;
     margin-bottom: 48px;
-    margin-top: 48px;
+    margin-top: 96px;
  }
 
  /* .music {
@@ -406,6 +403,7 @@ header {
 
 .search {
     margin: 0  auto;
+    margin-top: 65px
 }
 
 .search__top{

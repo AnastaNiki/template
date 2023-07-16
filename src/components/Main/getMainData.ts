@@ -1,5 +1,11 @@
 const APIkey = "ed48f5fc3bc871362430fba857a3a411";
 
+function deleteProps (obj:any, prop:any) {
+    for (const p of prop) {
+       delete obj[p];
+    }    
+}
+
 /**
  * Запрашивает данные о популярных исполнителях по API last.fm.
  * 
@@ -27,16 +33,26 @@ export async function getMusicCharts() {
 &artist=${encodeURIComponent(element.name)}&api_key=${APIkey}&format=json`);
             }
 
-            musicCharts.tags = await Promise.all(topTagsUrls.map(url => fetch(url))).then(
+            const tags = await Promise.all(topTagsUrls.map(url => fetch(url))).then(
                 responses => Promise.all(responses.map(r => r.json()))).then(
                     responses => (responses.map(r => r.toptags.tag.slice(0,3))));
-        
+            
+            musicCharts.forEach((music:any) => {
+                music.image = music.image[2]['#text']
+                deleteProps(music, ['listeners', 'playcount', 'streamable', 'mbid'])
+            });
+
+            tags.forEach((tags:Array<object>, index:number) => {
+                tags.forEach((tag:any) => {delete tag.count});
+                musicCharts[index].tags = tags
+            });
+
             return musicCharts;
         } else {
             throw new Error(`${data.error}. Message: ${data.message}.`);
         }
     } catch(err) {
-        alert(err + '\n' + 'Возникла ошибка при обращении к API, попробуйте обновить страницу.');
+        alert(err + '\n Возникла ошибка при обращении к API, попробуйте обновить страницу.');
         return {};
     }
 }
@@ -68,16 +84,27 @@ export async function getTrackCharts() {
                 &artist=${encodeURIComponent(element.artist.name)}&track=${encodeURIComponent(element.name)}&api_key=${APIkey}&format=json`);
             }
 
-            trackCharts.tags = await Promise.all(topTagsUrls.map(url => fetch(url))).then(
+            const tags = await Promise.all(topTagsUrls.map(url => fetch(url))).then(
                 responses => Promise.all(responses.map(r => r.json()))).then(
                     responses => (responses.map(r => r.toptags.tag.slice(0,3))));
-    
+
+            trackCharts.forEach((track:any) => {
+                track.image = track.image[1]['#text']
+                deleteProps(track.artist, ['mbid'])
+                deleteProps(track, ['listeners', 'playcount', 'streamable', 'mbid', 'duration'])
+            });
+            
+            tags.forEach((tags:Array<object>, index:number) => {
+                tags.forEach((tag:any) => {deleteProps(tag, ['count'])});
+                trackCharts[index].tags = tags
+            });
+            
             return trackCharts;
         } else {
             throw new Error(`${data.error}. Message: ${data.message}.`);
         }
     } catch(err) {
-        alert(err + '\n' + 'Возникла ошибка при обращении к API, попробуйте обновить страницу.');
+        alert(err + '\n Возникла ошибка при обращении к API, попробуйте обновить страницу.');
         return {};
     }
 }

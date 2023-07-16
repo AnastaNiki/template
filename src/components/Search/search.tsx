@@ -1,6 +1,6 @@
-import { useSearchParams, createSearchParams, useNavigate} from 'react-router-dom';
 import {getArtistSearch, getAlbumSearch, getTrackSearch} from "./getSearchData"
 import {useState, useEffect} from 'react'
+import {SearchForm} from "./searchForm";
 
 let searchValue = (new URL(window.location.href)).searchParams.get('q');
 
@@ -10,197 +10,165 @@ function H1Search() {
     );
 }
 
-function SearchForm() {
-    const navigate = useNavigate();
-
-    const pathname = '';
-    const [searchParams, setSearchParams] = useSearchParams({q:''});
-
-    const handleChange = (event: { target: { value: any; }; }) => {
-        setSearchParams({q:event.target.value});
-      };
-
-
-    const handleSubmit = function (event: { preventDefault: () => void; }) {
-
-        const path = {
-            pathname,
-            search: createSearchParams(searchParams).toString()
-        };
-
-        event.preventDefault();
-        navigate(path);
-        window.location.reload();
-    };
-
-    const handleClick = (event: { preventDefault: () => void; }) => {
-        const path = {
-            pathname,
-            search: createSearchParams(searchParams).toString()
-          };
-    
-        event.preventDefault();
-        navigate(path);
-        window.location.reload();
-    };
-  
+function SearchNav() {
     return (
-      <form id="search__inputForm" onSubmit={handleSubmit} >
-            <div className="search__inputBlock">
-                <input type="search" className="search__input" onChange={handleChange} placeholder="Search for music..."/>
-                    <a><button type="submit" className="search__buttonSearch" onClick={handleClick}></button></a>
-                </div>
-        </form> 
+    <div className="search__nav">
+        <ul className="search__navItems">
+            <li className="search__navItem"><a href="" className="search__mainNavLink">Top Results</a></li>
+        </ul>
+    </div>
     );
+}
 
-  }
+function CoverImg(props:{image:string, searchValue:string}) {
+    return (
+        <div className="search__coverItemImg">
+            <img src={props.image} alt={props.searchValue}/>
+        </div>
+    );
+}
+
+function CoverArtisText(props:{url:string, name:string, listeners:number}){
+    return (
+        <div className="search__coverItemText">
+            <p className="search__coverItemTextMain"><a href={props.url} className="link">{props.name}</a></p>
+            <span className="search__statName">{props.listeners} listeners</span>
+        </div>
+    );
+}
+
+function CoverAlbumText(props:{url:string, name:string, artist:string}){
+    return (
+        <div className="search__coverItemText">
+            <p className="search__coverItemTextMain"><a href={props.url} className="link">{props.name}</a></p>
+            <a href={props.url} className="search__singerLink link">{props.artist}</a>
+        </div>
+    );
+}
+
+function ArtistItem(props:{artist:{image:string, searchValue:string, url:string, name:string, listeners:number}}) {
+    return (
+        <li className="search__gridItem">
+            <div className="search__covers">
+                <div className="search__coverItem">
+                <CoverImg image={props.artist.image} searchValue={props.artist.searchValue} />
+                <CoverArtisText url={props.artist.url} name={props.artist.name} listeners={props.artist.listeners} />
+                <a href="/search.html" className="search__linkBlock"></a>
+                </div>
+            </div>
+        </li>      
+    );
+}
+
+
+function AlbumItem(props: {album: {image:string, searchValue:string, url:string, name:string, artist:string}}) {
+    return (
+        <li className="search__gridItem">
+            <div className="search__covers">
+                <div className="search__coverItem">
+                <CoverImg image={props.album.image} searchValue={props.album.searchValue} />
+                <CoverAlbumText url={props.album.url} name={props.album.name} artist={props.album.artist} />
+                <a href="/search.html" className="search__linkBlock"></a>
+                </div>
+            </div>
+        </li>      
+    );
+}
+
+function Artists(props: {artists: Array<{image:string, searchValue:string, url:string, name:string, listeners:number}>}){
+    return (
+        <ol className="search__gridItems">
+            {props.artists.map((artist: {image:string, searchValue:string, url:string, name:string, listeners:number}) =>
+             <ArtistItem artist={artist} key={artist.name} />)}
+        </ol>
+    );
+}
+
+function Albums(props: {albums: Array<{image:string, searchValue:string, url:string, name:string, artist:string}>}){
+    return (
+        <ol className="search__gridItems">
+            {props.albums.map((album: {image:string, searchValue:string, url:string, name:string, artist:string}) => 
+            <AlbumItem album={album} key={album.artist + album.name} />)}
+        </ol>
+    );
+}
+
+function TrackItem(props: {track: {url:string, image:string, name:string, artist:string}}) {
+    return (
+        <tr>
+            <td><button type="submit" className="search__play-button"></button></td>
+            <td><a><img className="search__tracksImg" src={props.track.image} alt={props.track.name}/></a></td>
+            <td><a href={props.track.url} className="search__trackLinkSong link">{props.track.name}</a></td>
+            <td><a href={props.track.url} className="search__trackLinkSinger link">{props.track.artist}</a></td>
+        </tr>
+    );
+}
+
+function Tracks(props: {tracks: Array<{url:string, image:string, name:string, artist:string}>}){
+    return (
+        <table className="search__tracksTable">
+            <tbody>
+                {props.tracks.map((track: {url:string, image:string, name:string, artist:string}) => 
+                <TrackItem track={track} key={track.artist + track.name} />)}
+            </tbody>
+        </table>
+    );
+}
 
 function ArtistSearch() {
-    const [data, setData] = useState('');
-
+    const [data, setData] = useState([]);
     useEffect(() => {
         async function getData() {
-            const artistSearch = await getArtistSearch(searchValue);
-          
-            if (JSON.stringify(artistSearch) === '{}' || artistSearch.length == 0) {
-                const template = `<li class="seacrh__message">No artists found.</li>`;
-                return template;
-            }
-        
-            let template = '';
-        
-            artistSearch.forEach(function (artist: { image: { [x: string]: any; }[]; url: any; name: any; listeners: any; }, index: any) {
-                template += `
-                    <li class="search__gridItem">
-                        <div class="search__covers">
-                            <div class="search__coverItem">
-                                <div class="search__coverItemImg">
-                                    <img src="${artist.image[2]['#text']}" alt="${searchValue}">
-                                </div>
-                                <div class="search__coverItemText">
-                                    <p class="search__coverItemTextMain"><a href="${artist.url}" class="link">${artist.name}</a></p>
-                                    <span class="search__statName">${artist.listeners} listeners</span>
-                                </div>
-                                <a href="/search.html" class="search__linkBlock"></a>
-                            </div>
-                        </div>
-                    </li>`;
-            });
-    
-          setData(template);
-        };
-    
-        if (!data) {
-          getData();
+          const artistSearch = await getArtistSearch(searchValue);
+          setData(artistSearch);
         }
-      }, []);
-    
-      return (
+        getData();
+      }, []); //пустой dependencies [] - эффект применится 1 раз
+    return (
         <>
-        <ol className="search__gridItems" dangerouslySetInnerHTML={{__html: data}}></ol>
+            <Artists artists={data}/>
         </>
-      );
+    );
 }
-    
 
-function AlbumSearch(){
-    const [data, setData] = useState('');
-
+function AlbumSearch() {
+    const [data, setData] = useState([]);
     useEffect(() => {
         async function getData() {
-            const albumSearch = await getAlbumSearch(searchValue);
-          
-            if (JSON.stringify(albumSearch) === '{}' || albumSearch.length == 0) {
-                const template = `<li class="seacrh__message">No albums found.</li>`;
-                return template;
-            }
-        
-            let template = '';
-        
-            albumSearch.forEach((album: { image: { [x: string]: any; }[]; url: any; name: any; artist: any; }) => {
-                template += `
-                <li class="search__gridItem">
-                <div  class="search__covers">
-                    <div class="search__coverItem">
-                        <div class="search__coverItemImg">
-                            <img src="${album.image[2]['#text']}" alt="${searchValue}">
-                        </div>
-                        <div class="search__coverItemText">
-                            <p class="search__coverItemTextMain"><a href="${album.url}" class="link">${album.name}</a></p>
-                            <a href="${album.url}" class="search__singerLink link">${album.artist}</a>
-                        </div>
-                        <a href="/search.html" class="search__linkBlock"></a>
-                        </div>
-                    </div>
-                </li>
-                `
-            });
-          setData(template);
-        };
-    
-        if (!data) {
-          getData();
+          const albumSearch = await getAlbumSearch(searchValue);
+          setData(albumSearch);
         }
+        getData();
       }, []);
-    
-      return (
+    return (
         <>
-        <ol className="search__gridItems" dangerouslySetInnerHTML={{__html: data}}></ol>
+            <Albums albums={data}/>
         </>
-      );
-}  
+    );
+}
 
-function TrackSearch(){
-    const [data, setData] = useState('');
-
+function TrackSearch() {
+    const [data, setData] = useState([]);
     useEffect(() => {
         async function getData() {
-            const trackSearch = await getTrackSearch(searchValue);
-          
-            if (JSON.stringify(trackSearch) === '{}' || trackSearch.length == 0) {
-                const template = `<span class="seacrh__message">No tracks found.</span>`;
-                return template;
-            }
-        
-            let template = '';
-        
-            trackSearch.forEach((track: { image: { [x: string]: any; }[]; name: any; url: any; artist: any; }) => {
-                template += `                    
-                <tr>
-                    <td><button type="submit" class="search__play-button"></button></td>
-                    <td><a><img class="search__tracksImg" src="${track.image[0]['#text']}" alt="${track.name}"></a></td>
-                    <td><a href="${track.url}" class="search__trackLinkSong link">${track.name}</a></td>
-                    <td><a href="${track.url}" class="search__trackLinkSinger link">${track.artist}</a></td>
-                </tr>`
-            });
-          setData(template);
-        };
-    
-        if (!data) {
-          getData();
+          const trackSearch = await getTrackSearch(searchValue);
+          setData(trackSearch);
         }
+        getData();
       }, []);
-    
-      return (
+    return (
         <>
-        <table className="search__tracksTable" dangerouslySetInnerHTML={{__html: data}}></table>
+            <Tracks tracks={data}/>
         </>
-      );
-}  
+    );
+}
 
 export const Search = () => {
     return (
         <main className="search">
             <div className = "search__top">
                 <H1Search/>
-                <div className="search__nav">
-                    <ul className="search__navItems">
-                        <li className="search__navItem"><a href="" className="search__mainNavLink">Top Results</a></li>
-                        <li className="search__navItem"><a href="" className="search__navLink">Artists</a></li>
-                        <li className="search__navItem"><a href="" className="search__navLink">Albums</a></li>
-                        <li className="search__navItem"><a href="" className="search__navLink">Tracks</a></li>
-                    </ul>
-                </div>
+                <SearchNav/>
             </div>
 
             <div className="search_content">
@@ -219,7 +187,7 @@ export const Search = () => {
                 </section>
 
                 <section>
-                    <h2 className="search__titel">Tracs</h2>
+                    <h2 className="search__titel">Tracks</h2>
                     <TrackSearch/>
                     <p  className="search__more"><a href="https://www.last.fm/search/tracks?q=" className="search__moreLink link">More tracks</a></p>
                 </section>

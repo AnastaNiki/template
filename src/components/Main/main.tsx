@@ -1,116 +1,116 @@
 import {getMusicCharts, getTrackCharts} from "./getMainData"
 import {useState, useEffect} from 'react'
 
+function MusicImg(props: {url:string, image:string}) {
+  return <div className="music__hotNowImg"><a href={props.url}><img src={props.image} alt="Cover" className="music__imgHot"/></a></div>
+}
+
+function MusicName(props: {url:string, name:string}) {
+  return <h3 className="music__name"><a href={props.url} className="link">{props.name}</a></h3>
+}
+
+function GenreItem(props: {url:string, name:string}) {
+  return <li className="music__genresItem"><a href={props.url} className="link">{props.name}</a></li>
+}
+
+function Genres(props: {tags: Array<{url:string, name:string}>}) {
+  return (<ul className="music__genres"> 
+            {props.tags.map((genre) => <GenreItem url={genre.url} name={genre.name} key={genre.name}/>)}
+          </ul>                         
+  );
+}
+
+function HotNowMusicItem(props: {music: {url:string, name:string, image:string, tags:Array<{url:string, name:string}>}}) {
+  return (<li className="music__hotNowItem" key={props.music.name}>
+            <MusicImg url={props.music.url} image={props.music.image} />
+            <MusicName url={props.music.url} name={props.music.name} />
+            <Genres tags={props.music.tags} />
+          </li>
+  );
+}
+
+function MusicRaw(props: {charts:Array<{url:string, name:string, image:string, tags:Array<{url:string, name:string}>}>}) {
+  return (
+    <>
+      <ol className="music__hotNow" >
+        {props.charts.map((music:{url:string, name:string, image:string, tags:Array<{url:string, name:string}>}) =>
+         <HotNowMusicItem music={music} key={music.name} />)}
+      </ol>
+    </>
+  );
+}
+
 function HotRightNow() {
-  const [data, setData] = useState(['','']);
-
-  useEffect(() => {
-    async function getData() {
-      const musicCharts = await getMusicCharts();
-      
-        if (JSON.stringify(musicCharts) === '{}') {
-            const template = `<li class="seacrh__message">No music found.</li>`;
-            return {
-              template
-            };
-        }
-    
-        let template0 = '';
-        let template1 = '';
-    
-        musicCharts.forEach((music:any, index:number) => {
-            let flagIndex = (index < 6) ? 0 : 1;
-    
-            //будет выведено столько тегов, сколько вернулось из запроса
-            let liGenres = '';
-            for (const element of musicCharts.tags[index]) {
-                liGenres += `<li class="music__genresItem"><a href=${element.url} class="link">${element.name}</a></li>\n`;
-            }
-    
-            if (flagIndex == 0) {
-                template0 +=  `
-                    <li class="music__hotNowItem" key=${index}>
-                    <div class="music__hotNowImg"><a href=${music.url}><img src="${music.image[2]['#text']}" alt="Cover" class="music__imgHot"></a></div>
-                    <h3 class="music__name"><a href=${music.url} class="link">${music.name}</a></h3>
-                    <ul class="music__genres"> 
-                        ${liGenres}
-                    </ul>
-                    </li>`;
-            } else {
-                template1 +=  `
-                    <li class="music__hotNowItem" key=${index}
-                    <div class="music__hotNowImg"><a href=${music.url}><img src="${music.image[2]['#text']}" alt="Cover" class="music__imgHot"></a></div>
-                    <h3 class="music__name"><a href=${music.url} class="link">${music.name}</a></h3>
-                    <ul class="music__genres"> 
-                        ${liGenres}
-                    </ul>
-                    </li>`;
-            }
-          });
-
-      setData([template0,template1]);
-    };
-
-    if (data[0] === '' && data[0] == data[1]) {
+    // начальное состояние useState(initalState); 
+    const [data, setData] = useState([]);
+    useEffect(() => {
+      async function getData() {
+        const musicCharts = await getMusicCharts();
+        setData(musicCharts);
+      }
       getData();
-    }
-  }, []);
+    }, []);
 
   return (
     <>
-      <ol className="music__hotNow" dangerouslySetInnerHTML={{__html: data[0]}} ></ol>
-      <ol className="music__hotNow" dangerouslySetInnerHTML={{__html: data[1]}} ></ol>
+      <MusicRaw charts={data.slice(0,6)} />
+      <MusicRaw charts={data.slice(6)} />
     </>
   );
+}
+
+function TrackImg(props: {url:string, image:string}) {
+  return <div className="music__trackImg"><a href={props.url}><img src={props.image} alt="Album" /></a></div>
+}
+
+function TrackName(props: {url:string, name:string}) {
+  return <div className="music__name2"><a href="{props.url}" className="link">{props.name}</a></div>
+}
+
+function TrackArtist(props: {url:string, name:string}) {
+  return <div className="music__artist"><a href="{props.url}" className="link">{props.name}</a></div>
+}
+
+function HotNowTrackItem(props: {track: {url:string, artist:{name:string, url:string},
+   name:string, image:string, tags:Array<{url:string, name:string}>}}) {
+  return (<li className="music__trackItem" key={props.track.name}>
+            <TrackImg url={props.track.artist.url} image={props.track.image} />
+            <TrackName url={props.track.url} name={props.track.name} />
+            <TrackArtist url={props.track.artist.url} name={props.track.artist.name} />
+            <Genres tags={props.track.tags} />
+          </li>
+  );
+}
+
+function HotNowTrack(props: {tracks:Array<{url:string, artist:{name:string, url:string},
+   name:string, image:string, tags:Array<{url:string, name:string}>}>}) {
+  return (
+    <ol className="music__tracks">
+      {props.tracks.map(
+        (track:{url:string,  artist:{name:string, url:string}, name:string, image:string, 
+          tags:Array<{url:string, name:string}>}) => 
+        <HotNowTrackItem track={track} key={track.name} />)}
+    </ol>
+  )
 }
 
 function TrackCharts() {
-  const [data, setData] = useState('');
-
-  useEffect(() => {
-    async function getData() {
-      const trackCharts = await getTrackCharts();
-      
-    if (JSON.stringify(trackCharts) === '{}') {
-        const template = `<span class="seacrh__message">No track found.</span>`;
-        return template;
-    }
-
-    let template = '';
-
-    trackCharts.forEach((track: { artist: { url: any; name: any; }; image: { [x: string]: any; }[]; url: any; name: any; }, index: string | number) => {
-        //будет выведено столько тегов, сколько вернулось из запроса
-        let liGenres = '';
-        for (const element of trackCharts.tags[index]) {
-            liGenres += `<li class="music__genresItem"><a href="${element.url}" class="link">${element.name}</a></li>\n`;
-        }
-
-        template +=  `
-            <li class="music__trackItem">
-            <div class="music__trackImg"><a href="${track.artist.url}"><img src="${track.image[1]['#text']}" alt="Album"></a></div>
-            <div class="music__name2"><a href="${track.url}" class="link">${track.name}</a></div>
-            <div class="music__artist"><a href="${track.artist.url}" class="link">${track.artist.name}</a></div>
-            <ul class="music__genres"> 
-                ${liGenres}
-            </ul>
-            </li>`;
-    });
-
-      setData(template);
-    };
-
-    if (!data) {
+    // начальное состояние useState(initalState); 
+    const [data, setData] = useState([]);
+    useEffect(() => {
+      async function getData() {
+        const trackCharts = await getTrackCharts();
+        setData(trackCharts);
+      }
       getData();
-    }
-  }, []);
+    }, []);
 
   return (
     <>
-    <ol className="music__tracks" dangerouslySetInnerHTML={{__html: data}}></ol>
+      <HotNowTrack tracks={data}/> 
     </>
   );
 }
-
 
 export const Main = () => {
     return (
@@ -118,9 +118,9 @@ export const Main = () => {
           <h1 className="content__header">Music</h1>
           <div className="music">
             <h2 className="music__titel">Hot right now</h2>
-              <HotRightNow />
+              <HotRightNow /> 
             <h2 className="music__titel">Popular tracks</h2>
-              <TrackCharts />
+              <TrackCharts />    
           </div>
       </main>
     );
